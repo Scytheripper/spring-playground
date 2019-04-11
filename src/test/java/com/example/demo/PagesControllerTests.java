@@ -27,4 +27,13 @@ public class PagesControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello World!"));
     }
+
+    @Test
+    public void testMathPi() throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/pi");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("3.141592653589793"));
+    }
 }
