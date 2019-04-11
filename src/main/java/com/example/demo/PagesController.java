@@ -35,7 +35,6 @@ public class PagesController {
 
     @RequestMapping("/math/volume/{length}/{width}/{height}")
     public String getVolume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
-        int volume = length*width*height;
-        return "The volume of a " + length + "x" + width + "x" + height +" rectangle is 60";
+        return mathService.volume(length, width, height);
     }
 }

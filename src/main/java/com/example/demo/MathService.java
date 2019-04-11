@@ -37,4 +37,9 @@ public class MathService {
         //length - 3 to overwrite extra "+" which appends to the last element, REFACTORD
         return ret.substring(0,ret.length() - 3) + " = " + sum;
     }
+
+    public String volume(int length, int width, int height) {
+        int volume = length*width*height;
+        return "The volume of a " + length + "x" + width + "x" + height +" rectangle is 60";
+    }
 }
