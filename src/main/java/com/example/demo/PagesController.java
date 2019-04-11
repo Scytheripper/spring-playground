@@ -41,24 +41,6 @@ public class PagesController {
 
     @RequestMapping("/math/area")
     public String postArea(@RequestParam String type, @RequestParam Map<String, String> params) {
-        switch (type){
-            case "circle":
-                if(params.get("radius") == null){
-                    return "Invalid";
-                }
-                int radius = Integer.parseInt(params.get("radius"));
-                double area = Math.PI * radius * radius;
-                area = (double)Math.round(area * 100000d) / 100000d;
-                return "Area of a circle with a radius of " + radius + " is " + area;
-
-            case "rectangle":
-                if(params.get("width") == null || params.get("width") == null){
-                    return "Invalid";
-                }
-                int width = Integer.parseInt(params.get("width"));
-                int height = Integer.parseInt(params.get("height"));
-                return "Area of a " + width + "x" + height +" rectangle is " + width*height ;
-        }
-        return "Invalid";
+        return mathService.area(type, params);
     }
 }
