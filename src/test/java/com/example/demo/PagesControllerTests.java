@@ -99,4 +99,32 @@ public class PagesControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string("The volume of a 3x4x5 rectangle is 60"));
     }
+
+    @Test
+    public void testMathAreaCircle () throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/area?type=circle&radius=4");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("Area of a circle with a radius of 4 is 50.26548"));
+    }
+
+    @Test
+    public void testMathAreaRectangle () throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/area?type=rectangle&width=4&height=7");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("Area of a 4x7 rectangle is 28"));
+    }
+
+    @Test
+    public void testMathAreaInvalid () throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/area?type=rectangle&radius=5");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("Invalid"));
+    }
+
 }

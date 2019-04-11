@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class PagesController {
@@ -36,5 +37,17 @@ public class PagesController {
     @RequestMapping("/math/volume/{length}/{width}/{height}")
     public String getVolume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
         return mathService.volume(length, width, height);
+    }
+
+    @RequestMapping("/math/area")
+    public String postArea(@RequestParam String type, @RequestParam Map<String, Integer> params) {
+        switch (type){
+            case "circle":
+                return "Circle Radius: " + params.get("radius");
+
+            case "rectangle":
+                return "Rectangle: " + params.get("width");
+        }
+        return "invalid";
     }
 }
