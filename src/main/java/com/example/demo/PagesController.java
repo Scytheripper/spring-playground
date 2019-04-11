@@ -1,10 +1,7 @@
 package com.example.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -28,12 +25,17 @@ public class PagesController {
     @GetMapping("/math/calculate")
     public String getCalculation(@RequestParam(value="operation", defaultValue = "add")String operation,
                                  @RequestParam(required = true) int x, @RequestParam(required = true) int y) {
-
         return mathService.calculate(operation, x, y);
     }
 
     @PostMapping("/math/sum")
     public String postSum(@RequestParam List<Integer> n) {
         return mathService.sum(n);
+    }
+
+    @RequestMapping("/math/volume/{length}/{width}/{height}")
+    public String getVolume(@PathVariable int length, @PathVariable int width, @PathVariable int height) {
+        int volume = length*width*height;
+        return "The volume of a " + length + "x" + width + "x" + height +" rectangle is 60";
     }
 }

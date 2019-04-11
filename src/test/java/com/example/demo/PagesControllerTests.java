@@ -83,11 +83,20 @@ public class PagesControllerTests {
     }
 
     @Test
-    public void testSum () throws Exception {
+    public void testMathSum () throws Exception {
         RequestBuilder request = MockMvcRequestBuilders.post("/math/sum?n=4&n=5&n=6");
 
         this.mvc.perform(request)
                 .andExpect(status().isOk())
                 .andExpect(content().string("4 + 5 + 6 = 15"));
+    }
+
+    @Test
+    public void testMathVolume () throws Exception {
+        RequestBuilder request = MockMvcRequestBuilders.get("/math/volume/3/4/5");
+
+        this.mvc.perform(request)
+                .andExpect(status().isOk())
+                .andExpect(content().string("The volume of a 3x4x5 rectangle is 60"));
     }
 }
