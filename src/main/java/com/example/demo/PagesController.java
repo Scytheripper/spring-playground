@@ -1,8 +1,13 @@
 package com.example.demo;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 @RestController
 public class PagesController {
@@ -36,5 +41,21 @@ public class PagesController {
         }
 
         return "";
+    }
+
+    @PostMapping("/math/sum")
+    public String postSum(@RequestParam List<Integer> n) {
+        String ret = "";
+        int sum = 0;
+        Iterator<Integer> nIterator = n.iterator();
+
+        while(nIterator.hasNext()) {
+            int current = nIterator.next();
+            sum += current;
+            ret += current + " + ";
+        }
+
+        //length - 3 to overwrite extra "+" which appends to the last element, REFACTORD
+        return ret.substring(0,ret.length() - 3) + " = " + sum;
     }
 }
