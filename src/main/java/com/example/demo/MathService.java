@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.Iterator;
+import java.util.List;
+
 public class MathService {
 
     public String calculate(String operation, int x, int y) {
@@ -18,5 +21,20 @@ public class MathService {
 
         }
         return "Hello!";
+    }
+
+    public String sum(List<Integer> n) {
+        String ret = "";
+        int sum = 0;
+        Iterator<Integer> nIterator = n.iterator();
+
+        while(nIterator.hasNext()) {
+            int current = nIterator.next();
+            sum += current;
+            ret += current + " + ";
+        }
+
+        //length - 3 to overwrite extra "+" which appends to the last element, REFACTORD
+        return ret.substring(0,ret.length() - 3) + " = " + sum;
     }
 }
